@@ -11,5 +11,7 @@ setup(
     description=DESCRIPTION,
     packages=find_packages(include=['EmailErrorMix']),
     install_requires=[],
+    license="MIT",
+    url="https://github.com/Mathimix7/EmailErrorMix",
     keywords=['python', 'email', 'error', 'alerts', 'maintenance'],
 )

@@ -29,7 +29,7 @@ class ErrorEmailer:
 
     """
 
-    def __init__(self, sender_email: str, sender_password: str, smtp_server: str, smtp_port:int, receiver_emails:list=None) -> None:
+    def __init__(self, sender_email: str, sender_password: str, smtp_server: str, smtp_port: int, receiver_emails: list=None) -> None:
         self.sender_email = sender_email
         self.sender_password = sender_password
         self.smtp_server = smtp_server
