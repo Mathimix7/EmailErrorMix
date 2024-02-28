@@ -18,7 +18,7 @@ class ErrorEmailer:
         receiver_emails (list, optional): The emails address of the receivers. If not provided, it defaults to the sender's email address.
 
     Methods:
-        __send_email(function, exception, traceback_str):
+        send_email(function, exception, traceback_str):
             [PRIVATE METHOD] Sends an error notification email.
 
         notify_on_error():
@@ -37,7 +37,7 @@ class ErrorEmailer:
         if not receiver_emails:
             self.receiver_emails = [sender_email]
 
-    def __send_email(self, function, exception, traceback_str) -> bool:
+    def send_email(self, function, exception, traceback_str) -> bool:
         """
         [PRIVATE METHOD] Sends an error notification email.
 
@@ -83,7 +83,7 @@ class ErrorEmailer:
                 smtp.login(self.sender_email, self.sender_password)
                 smtp.send_message(msg)
             return True
-        except Exception as e:
+        except:
             return False
 
     def notify_on_error(self) -> callable:
@@ -100,7 +100,7 @@ class ErrorEmailer:
                     return func(*args, **kwargs)
                 except Exception as e:
                     traceback_str = traceback.format_exc()
-                    self.__send_email(func, e, traceback_str)
+                    self.send_email(func, e, traceback_str)
                     raise e
             return wrapper
         return decorator
@@ -128,6 +128,6 @@ class ErrorContextManager:
     def __exit__(self, exc_type, exc_value, e):
         if exc_type is not None:
             traceback_str = traceback.format_exc()
-            self.error_emailer.__send_email(self.caller_file, exc_value, traceback_str)
-            raise e
+            self.error_emailer.send_email(self.caller_file, exc_value, traceback_str)
+            return False
         return True
