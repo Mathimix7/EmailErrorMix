@@ -15,10 +15,10 @@ Installing
 To install the library you can just run the following command:
 
     # Linux/macOS
-    pip3 install git+https://github.com/Mathimix7/EmailErrorMix.git
+    pip3 install EmailErrorMix
 
     # Windows
-    pip install git+https://github.com/Mathimix7/EmailErrorMix.git
+    pip install EmailErrorMix
 
 
 Function Example
